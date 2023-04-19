@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strong Password Generator</title>
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -18,26 +18,24 @@
         $generatedPassword = "";
 
 
-        function generatePassword($iterations, $digits, $password) {
-            for ($i = 0; $i < $iterations; $i++) { 
-                $passwordArray = explode(" ", $digits);
-                $randomNumber = rand(0, count($passwordArray));
-                $password .= $passwordArray[$randomNumber];
-            }
-
-            return $password;
-        }
+        include __DIR__ . "./functions.php";
 
     ?>
 
+    <h1 class="text-center pt-5">Strong Password Generator</h1>
+    <h2 class="text-center text-white pb-2">Genera una password sicura</h2>
 
     <div class="container">
-        <form action="index.php" method="GET" class="mt-5">
-            <label for="passwordLength">Lunghezza Password</label>
-            <input type="text" id="passwordLength" name="passwordLength">
+        <form action="index.php" method="GET">
+            <div class="datas pt-2 pb-3">
+                <label for="passwordLength" class="pe-2">Lunghezza Password</label>
+                <input type="text" id="passwordLength" name="passwordLength" autocomplete="off">
+            </div>
 
-            <button type="submit" class="btn btn-primary">Invia</button>
-            <input class="btn btn-dark" type="reset" value="Reset">
+            <div class="buttons pb-4">
+                <button type="submit" class="btn btn-primary">Genera</button>
+                <input class="btn btn-dark" type="reset" value="Reset">
+            </div>
         </form>
 
         <h2> <?php echo generatePassword($passwordLength, $passwordItems, $generatedPassword); ?> </h2>
