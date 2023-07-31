@@ -11,7 +11,9 @@
 <body>
 
     <?php
-        $passwordLength = $_GET["passwordLength"];
+        if (isset($_GET["passwordLength"])) {
+            $passwordLength = $_GET["passwordLength"];
+        }
 
         $passwordItems = "a b c d e g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 [ ] { } @ # - _";
 
@@ -38,7 +40,11 @@
             </div>
         </form>
 
-        <h2> <?php echo generatePassword($passwordLength, $passwordItems, $generatedPassword); ?> </h2>
+        <h2> <?php if (isset($_GET["passwordLength"]) && $_GET["passwordLength"] > 4 ) {
+            echo generatePassword($passwordLength, $passwordItems, $generatedPassword);
+        } else if (isset($_GET["passwordLength"]) && $_GET["passwordLength"] <= 4) {
+            echo "La password deve essere almeno di 5 caratteri";
+        } ?> </h2>
     </div>
 </body>
 </html>
